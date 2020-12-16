@@ -1,0 +1,17 @@
+./scripts/setup.sh 125 0.0041 # options are mass and width
+
+# to do hdamp uncertainty variations do:
+./scripts/setup.sh 125 0.0041 1 # for up
+./scripts/setup.sh 125 0.0041 2 # for down
+
+#cd into created folder 
+
+cd m125
+
+# setup generator (in stages)
+
+python ../../../batch_sub.py -p 1 -j 100
+python ../../../batch_sub.py -p 2 -j 100
+python ../../../batch_sub.py -p 3 -j 100
+
+./scripts/makegridpack.sh m125 # option sets name of gridpack
