@@ -27,7 +27,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(500)
+    input = cms.untracked.int32(100)
 )
 
 # Input source
@@ -40,7 +40,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('Configuration/GenProduction/python/HIG-RunIIFall17wmLHEGS-00038-fragment.py nevts:500'),
+    annotation = cms.untracked.string('Configuration/GenProduction/python/HIG-RunIIFall17wmLHEGS-00038-fragment.py nevts:100'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -58,7 +58,7 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
         filterName = cms.untracked.string('')
     ),
     eventAutoFlushCompressedSize = cms.untracked.int32(20971520),
-    fileName = cms.untracked.string('file:bbh_Fall17_mXHMASSX_GENSIM.root'),
+    fileName = cms.untracked.string('file:bbh_Fall17_mXHMASSXHDAMP_GENSIM.root'),
     outputCommands = process.RAWSIMEventContent.outputCommands,
     splitLevel = cms.untracked.int32(0)
 )
@@ -87,7 +87,7 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
             'pythia8CommonSettings', 
             'pythia8CP5Settings', 
             'pythia8PowhegEmissionVetoSettings',
-            'pythia8PSweightsSettings', 
+            #'pythia8PSweightsSettings', 
             'processParameters'),
         pythia8CP5Settings = cms.vstring('Tune:pp 14', 
             'Tune:ee 7', 
@@ -138,8 +138,8 @@ process.generator = cms.EDFilter("Pythia8HadronizerFilter",
 
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    args = cms.vstring('{}/src/bbh_powheg_mXHMASSXHDAMP.tar.gz'.format(os.environ["CMSSW_BASE"])),
-    nEvents = cms.untracked.uint32(500),
+    args = cms.vstring('../bbh_powheg_mXHMASSXHDAMP.tar.gz'),
+    nEvents = cms.untracked.uint32(100),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh')
