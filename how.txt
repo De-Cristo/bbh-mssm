@@ -10,8 +10,20 @@ cd m125
 
 # setup generator (in stages)
 
-python ../../../batch_sub.py -p 1 -j 100
-python ../../../batch_sub.py -p 2 -j 100
-python ../../../batch_sub.py -p 3 -j 100
+python ../../../scripts/batch_sub.py -p 1 -j 100
+python ../../../scripts/batch_sub.py -p 2 -j 100
+python ../../../scripts/batch_sub.py -p 3 -j 100
 
 ./scripts/makegridpack.sh m125 # option sets name of gridpack
+
+
+# for lots of mass points:
+
+for i in 60 100 125 140; do for j in "" 1 2; do ./scripts/setup.sh $i 0.0041 $j; done; done
+for i in 160 400 600; do for j in "" 1 2; do ./scripts/setup.sh $i 0.1 $j; done; done
+for i in 1000 1400 2000; do for j in "" 1 2; do ./scripts/setup.sh $i 1 $j; done; done
+for i in 2300 2900 3500; do for j in "" 1 2; do ./scripts/setup.sh $i 2 $j; done; done
+
+#for i in 60 100 125 140 160 400 600 1000 1400 2000 2300 2900 3500; do for j in "" "_up" "_down"; do cd m$i$j/CMSSW_8_0_22/src; cmsenv; python ../../../scripts/batch_sub.py -p 1 -j 100 $i$j; cd ../../../; done; done
+
+# changing p to 1, 2 ,3 
