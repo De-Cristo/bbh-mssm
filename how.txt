@@ -26,4 +26,17 @@ for i in 2300 2900 3500; do for j in "" 1 2; do ./scripts/setup.sh $i 2 $j; done
 
 #for i in 60 100 125 140 160 400 600 1000 1400 2000 2300 2900 3500; do for j in "" "_up" "_down"; do cd m$i$j/CMSSW_8_0_22/src; cmsenv; python ../../../scripts/batch_sub.py -p 1 -j 100 $i$j; cd ../../../; done; done
 
-# changing p to 1, 2 ,3 
+# changing p to 1, 2 ,3
+
+# prepare gridpacks
+
+ for i in 60 100 125 140 160 400 600 1000 1400 2000 2300 2900 3500; do for j in "" "_up" "_down"; do cd m$i$j/CMSSW_8_0_22/src; cmsenv; ./../../../scripts/makegridpack.sh m$i$j; cd ../../../; done; done
+
+# prepare for gridsubmission
+
+for i in 60 100 125 140 160 400 600 1000 1400 2000 2300 2900 3500; do for j in "" 1 2; do ./scripts/prepare_gridjobs.sh $i $j; done; done
+
+submit jobs:
+
+ 
+#for i in 60 100 125 140 160 400 600 1000 1400 2000 2300 2900 3500; do for j in "" "_up" "_down"; do cd m$i$j/CMSSW_9_3_6/src; cmsenv; crab submit crab_sub.py;  cd ../../../; done; done

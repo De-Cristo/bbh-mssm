@@ -1,4 +1,4 @@
-run=$1
+run=${1}
 
 mkdir -p gridpack
 cp *.dat gridpack/.
