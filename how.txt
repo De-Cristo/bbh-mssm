@@ -46,12 +46,13 @@ submit jobs:
 
 # setup CMSSW area:
 cmsrel CMSSW_9_3_12_patch2
-cd CMSSW_9_3_12_patch2/src
-cmsenv
 
 #mass=125
 
 for mass in 60 100 125 140 160 400 600 1000 1400 2000 2300 2900 3500; do
+
+cd CMSSW_9_3_12_patch2/src
+cmsenv
 
 cp ../../scripts/crab_sub_mg.py crab_sub_mg_m${mass}.py
 cp ../../scripts/gensim_mg.py gensim_mg_m${mass}.py
