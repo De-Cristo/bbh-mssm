@@ -49,14 +49,13 @@ cmsrel CMSSW_9_3_12_patch2
 cd CMSSW_9_3_12_patch2/src
 cmsenv
 
-mass=1000
+#mass=125
 
-mkdir m${mass}
-cd m${mass}
+for mass in 60 100 125 140 160 400 600 1000 1400 2000 2300 2900 3500; do
 
 cp ../../scripts/crab_sub_mg.py crab_sub_mg_m${mass}.py
 cp ../../scripts/gensim_mg.py gensim_mg_m${mass}.py
-cp /vols/cms/dw515/bbh_mg_gridpacks/bbh_mg_m${mass}.tar.gz ../.
+cp /vols/cms/dw515/bbh_mg_gridpacks/bbh_mg_m${mass}.tar.gz .
 
 sed -i "s/XHMASSX/${mass}/g" crab_sub_mg_m${mass}.py
 sed -i "s/XHMASSX/${mass}/g" gensim_mg_m${mass}.py
@@ -64,4 +63,5 @@ sed -i "s/XHMASSX/${mass}/g" gensim_mg_m${mass}.py
 # submit job with 
 crab submit crab_sub_mg_m${mass}.py
 
-cd ../../../ 
+cd ../../ 
+done
