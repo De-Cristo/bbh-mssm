@@ -160,6 +160,11 @@ process.RAWSIMoutput_step = cms.EndPath(process.RAWSIMoutput)
 process.schedule = cms.Schedule(process.lhe_step,process.generation_step,process.genfiltersummary_step,process.simulation_step,process.endjob_step,process.RAWSIMoutput_step) #,process.LHEoutput_step)
 from PhysicsTools.PatAlgos.tools.helpers import associatePatAlgosToolsTask
 associatePatAlgosToolsTask(process)
+
+#Setup FWK for multithreaded
+process.options.numberOfThreads=cms.untracked.uint32(4)
+process.options.numberOfStreams=cms.untracked.uint32(0)
+
 # filter all path with the production filter sequence
 for path in process.paths:
 	if path in ['lhe_step']: continue

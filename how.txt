@@ -66,3 +66,5 @@ crab submit crab_sub_mg_m${mass}.py
 
 cd ../../ 
 done
+
+# if mg gridpacks don't work on the grid untar them and check the CMSSW area is included in the tar file, for some reason they seem not to work without this
